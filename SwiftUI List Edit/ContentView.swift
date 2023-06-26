@@ -8,19 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var editMode: EditMode = .inactive
     @State private var users = ["Paul", "Taylor", "Adele"]
+    @State private var newName = ""
 
     var body: some View {
-        NavigationStack {
+        NavigationView {
             List {
                 ForEach(users, id: \.self) { user in
-                    Text(user)
+                    if editMode.isEditing == true {
+                        TextField(user, text: $newName)
+                    } else {
+                        Text(user)
+                    }
                 }
                 .onDelete(perform: delete)
             }
+            .animation(.easeInOut, value: editMode)
             .toolbar {
                 EditButton()
             }
+            .environment(\.editMode, $editMode)
         }
     }
 
