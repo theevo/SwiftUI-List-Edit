@@ -28,6 +28,7 @@ struct ContentView: View {
             .toolbar {
                 EditButton()
             }
+            .navigationTitle("Hello")
             .environment(\.editMode, $editMode)
         }
     }
