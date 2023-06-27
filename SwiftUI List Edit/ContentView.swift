@@ -17,7 +17,7 @@ struct ContentView: View {
             List {
                 if editMode.isEditing == true {
                     ForEach(Array(users.enumerated()), id: \.element) { index, user in
-                        TextField("\(index). \(user)", text: $newName)
+                        LineEditView(name: user)
                     }
                     .onDelete(perform: delete)
                 } else {
@@ -27,7 +27,7 @@ struct ContentView: View {
                     .onDelete(perform: delete)
                 }
             }
-            .animation(.easeInOut, value: editMode)
+            .animation(.easeIn, value: editMode)
             .toolbar {
                 EditButton()
             }

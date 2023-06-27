@@ -13,6 +13,7 @@
 		AC8AD7D92A4A2B2100941B1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC8AD7D82A4A2B2100941B1F /* Preview Assets.xcassets */; };
 		ACD7BA492A4B24CD00774E9D /* SingleLineEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7BA482A4B249300774E9D /* SingleLineEditView.swift */; };
 		ACD7BA4B2A4B24FA00774E9D /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7BA4A2A4B24FA00774E9D /* NavView.swift */; };
+		ACD7BA4F2A4B283800774E9D /* LineEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7BA4E2A4B283800774E9D /* LineEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		AC8AD7D82A4A2B2100941B1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ACD7BA482A4B249300774E9D /* SingleLineEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLineEditView.swift; sourceTree = "<group>"; };
 		ACD7BA4A2A4B24FA00774E9D /* NavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavView.swift; sourceTree = "<group>"; };
+		ACD7BA4E2A4B283800774E9D /* LineEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				AC8AD7D12A4A2B2000941B1F /* SwiftUI_List_EditApp.swift */,
 				AC8AD7D32A4A2B2000941B1F /* ContentView.swift */,
+				ACD7BA4E2A4B283800774E9D /* LineEditView.swift */,
 				ACD7BA4D2A4B260400774E9D /* Apple Example */,
 				AC8AD7D52A4A2B2100941B1F /* Assets.xcassets */,
 				AC8AD7D72A4A2B2100941B1F /* Preview Content */,
@@ -153,6 +156,7 @@
 			files = (
 				ACD7BA4B2A4B24FA00774E9D /* NavView.swift in Sources */,
 				ACD7BA492A4B24CD00774E9D /* SingleLineEditView.swift in Sources */,
+				ACD7BA4F2A4B283800774E9D /* LineEditView.swift in Sources */,
 				AC8AD7D42A4A2B2000941B1F /* ContentView.swift in Sources */,
 				AC8AD7D22A4A2B2000941B1F /* SwiftUI_List_EditApp.swift in Sources */,
 			);
