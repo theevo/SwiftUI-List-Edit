@@ -19,6 +19,7 @@ struct ContentView: View {
                     ForEach(Array(users.enumerated()), id: \.element) { index, user in
                         TextField("\(index). \(user)", text: $newName)
                     }
+                    .onDelete(perform: delete)
                 } else {
                     ForEach(users, id: \.self) { user in
                         Text(user)
