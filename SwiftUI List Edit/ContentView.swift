@@ -11,18 +11,20 @@ struct ContentView: View {
     @State private var editMode: EditMode = .inactive
     @State private var users = ["Paul", "Taylor", "Adele"]
     @State private var newName = ""
-
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(Array(users.enumerated()), id: \.element) { index, user in
-                    if editMode.isEditing == true {
+                if editMode.isEditing == true {
+                    ForEach(Array(users.enumerated()), id: \.element) { index, user in
                         TextField("\(index). \(user)", text: $newName)
-                    } else {
+                    }
+                } else {
+                    ForEach(users, id: \.self) { user in
                         Text(user)
                     }
+                    .onDelete(perform: delete)
                 }
-                .onDelete(perform: delete)
             }
             .animation(.easeInOut, value: editMode)
             .toolbar {
@@ -32,7 +34,7 @@ struct ContentView: View {
             .environment(\.editMode, $editMode)
         }
     }
-
+    
     func delete(at offsets: IndexSet) {
         users.remove(atOffsets: offsets)
     }
