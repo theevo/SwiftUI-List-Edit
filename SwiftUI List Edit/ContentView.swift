@@ -15,9 +15,9 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(users, id: \.self) { user in
+                ForEach(Array(users.enumerated()), id: \.element) { index, user in
                     if editMode.isEditing == true {
-                        TextField(user, text: $newName)
+                        TextField("\(index). \(user)", text: $newName)
                     } else {
                         Text(user)
                     }
