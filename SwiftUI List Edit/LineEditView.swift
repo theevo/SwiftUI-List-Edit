@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct LineEditView: View {
-    @State var name: String
+    @State private var name: String
+    
+    init(name: String) {
+        _name = State(initialValue: name)
+    }
     
     var body: some View {
         TextField("Name", text: $name)

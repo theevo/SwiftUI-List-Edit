@@ -9,8 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var editMode: EditMode = .inactive
-    @State private var users = ["Paul", "Taylor", "Adele"]
+    @State private var users: [String] = []
     @State private var newName = ""
+    
+    init(names: [String]) {
+        _users = State(initialValue: names)
+    }
     
     var body: some View {
         NavigationView {
@@ -18,6 +22,9 @@ struct ContentView: View {
                 if editMode.isEditing == true {
                     ForEach(Array(users.enumerated()), id: \.element) { index, user in
                         LineEditView(name: user)
+                            .onSubmit {
+                                print("submitted")
+                            }
                     }
                     .onDelete(perform: delete)
                 } else {
@@ -26,6 +33,9 @@ struct ContentView: View {
                     }
                     .onDelete(perform: delete)
                 }
+            }
+            .onChange(of: editMode) { newValue in
+                print("editMode = \(editMode)")
             }
             .animation(.easeIn, value: editMode)
             .toolbar {
@@ -43,6 +53,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(names: ["Paul", "Taylor", "Adele"])
     }
 }

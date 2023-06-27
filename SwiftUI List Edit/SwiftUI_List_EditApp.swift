@@ -11,7 +11,7 @@ import SwiftUI
 struct SwiftUI_List_EditApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(names: ["Paul", "Taylor", "Adele"])
         }
     }
 }
