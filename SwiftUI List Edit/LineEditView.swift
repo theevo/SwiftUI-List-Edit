@@ -11,12 +11,14 @@ struct LineEditView: View {
     @State var name: String
     
     var body: some View {
-        TextField("foo", text: $name)
+        TextField("Name", text: $name)
     }
 }
 
 struct LineEditView_Previews: PreviewProvider {
     static var previews: some View {
-        LineEditView(name: "Teek")
+        List {
+            LineEditView(name: "Teek")
+        }
     }
 }
