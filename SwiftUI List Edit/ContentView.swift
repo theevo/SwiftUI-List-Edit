@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var editMode: EditMode = .inactive
     @State private var users: [String] = []
     @State private var newName = ""
     
@@ -19,30 +18,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                if editMode.isEditing == true {
-                    ForEach(Array(users.enumerated()), id: \.element) { index, user in
-                        LineEditView(name: user)
-                            .onSubmit {
-                                print("submitted")
-                            }
-                    }
-                    .onDelete(perform: delete)
-                } else {
-                    ForEach(users, id: \.self) { user in
-                        Text(user)
-                    }
-                    .onDelete(perform: delete)
+                ForEach(users, id: \.self) { user in
+                    Text(user)
                 }
             }
-            .onChange(of: editMode) { newValue in
-                print("editMode = \(editMode)")
-            }
-            .animation(.easeIn, value: editMode)
-            .toolbar {
-                EditButton()
-            }
             .navigationTitle("Hello")
-            .environment(\.editMode, $editMode)
         }
     }
     
