@@ -25,20 +25,29 @@ struct ContentView: View {
                     } else {
                         Text(user)
                             .swipeActions(allowsFullSwipe: false) {
+                                Button(role: .destructive) {
+                                    delete(at: index)
+                                    
+                                } label: {
+                                    Label("Delete", systemImage: "trash.fill")
+                                }
                                 Button("Rename") {
                                     print("rename \(user)")
                                     renameIndex = index
+                                    newName = users[index]
                                 }
                             }
                     }
                 }
             }
             .navigationTitle("Hello")
+            
         }
     }
     
-    func delete(at offsets: IndexSet) {
-        users.remove(atOffsets: offsets)
+    func delete(at index: Int) {
+        let user = users.remove(at: index)
+        print("deleted \(user)")
     }
 }
 
