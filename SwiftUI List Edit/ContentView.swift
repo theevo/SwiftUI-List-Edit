@@ -22,7 +22,13 @@ struct ContentView: View {
                     Text(user)
                 }
             }
-            .navigationTitle("Hello")
+            //            .navigationTitle("Hello") // can't attach `.onTap`. this is not a View
+            .navigationBarTitleDisplayMode(.automatic)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Hello").font(.largeTitle) // this is ugly
+                }
+            }
         }
     }
     
