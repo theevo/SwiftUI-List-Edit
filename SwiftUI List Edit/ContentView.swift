@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    enum FocusedField {
+        case newName
+    }
+    
     @State private var users: [String] = []
     @State private var newName = ""
     @State private var showTextField = false
+    @FocusState private var focusedField: FocusedField?
     
     init(names: [String]) {
         _users = State(initialValue: names)
@@ -21,6 +26,7 @@ struct ContentView: View {
             List {
                 if showTextField {
                     TextField("Name", text: $newName)
+                        .focused($focusedField, equals: .newName)
                         .onSubmit {
                             if newName.isNotEmpty {
                                 users.insert(newName, at: 0)
@@ -43,6 +49,7 @@ struct ContentView: View {
                     Button("Add") {
                         withAnimation(.spring()) {
                             showTextField = true
+                            focusedField = .newName
                         }
                     }
                 }
