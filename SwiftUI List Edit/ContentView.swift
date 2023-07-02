@@ -35,11 +35,15 @@ struct ContentView: View {
             .toolbar(content: {
                 if showTextField {
                     Button("Cancel") {
-                        reset()
+                        withAnimation(.spring()) {
+                            reset()
+                        }
                     }
                 } else {
                     Button("Add") {
-                        showTextField = true
+                        withAnimation(.spring()) {
+                            showTextField = true
+                        }
                     }
                 }
             })
