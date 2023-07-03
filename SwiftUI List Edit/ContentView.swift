@@ -47,12 +47,15 @@ struct ContentView: View {
                         }
                     }
                 } else {
-                    Button("Add") {
+                    Button {
                         withAnimation(.spring()) {
                             showTextField = true
                             focusedField = .newName
                         }
+                    } label: {
+                        Image(systemName: "plus")
                     }
+
                 }
             })
             .navigationTitle("Hello")
