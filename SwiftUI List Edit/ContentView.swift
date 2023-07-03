@@ -12,6 +12,7 @@ struct ContentView: View {
         case newName
     }
     
+    @State private var editMode: EditMode = .inactive
     @State private var users: [String] = []
     @State private var newName = ""
     @State private var showTextField = false
@@ -34,13 +35,16 @@ struct ContentView: View {
                 .onMove(perform: move)
             }
             .toolbar(content: {
-                if showTextField {
-                    cancelButton
-                } else {
-                    addButton
-                    EditButton()
+                EditButton()
+                if editMode.isEditing == true {
+                    if showTextField {
+                        cancelButton
+                    } else {
+                        addButton
+                    }
                 }
             })
+            .environment(\.editMode, $editMode)
             .navigationTitle("Hello")
         }
     }
