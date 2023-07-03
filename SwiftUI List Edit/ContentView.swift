@@ -31,12 +31,14 @@ struct ContentView: View {
                     Text(user)
                 }
                 .onDelete(perform: delete)
+                .onMove(perform: move)
             }
             .toolbar(content: {
                 if showTextField {
                     cancelButton
                 } else {
                     addButton
+                    EditButton()
                 }
             })
             .navigationTitle("Hello")
@@ -76,6 +78,10 @@ struct ContentView: View {
     
     func delete(at offsets: IndexSet) {
         users.remove(atOffsets: offsets)
+    }
+    
+    func move(from offsets: IndexSet, to destination: Int) {
+        users.move(fromOffsets: offsets, toOffset: destination)
     }
     
     private func reset() {
