@@ -2,7 +2,7 @@
 
 ## Goal
 
-Out of the box, SwiftUI's [List](https://developer.apple.com/documentation/swiftui/list) can do quite a bit. Out of the box, you can [delete rows](https://www.hackingwithswift.com/quick-start/swiftui/how-to-let-users-delete-rows-from-a-list) and [move rows](https://www.swiftbysundell.com/articles/building-editable-swiftui-lists/) very easily.
+SwiftUI's [List](https://developer.apple.com/documentation/swiftui/list) is lovely in its ability to present our data in such an succinct manner. With a little bit of code, you can add code that will [delete rows](https://www.hackingwithswift.com/quick-start/swiftui/how-to-let-users-delete-rows-from-a-list) and [move rows](https://www.swiftbysundell.com/articles/building-editable-swiftui-lists/).
 
 I want to be able to add and rename rows as well.
 
