@@ -37,6 +37,7 @@ struct ContentView: View {
                 ForEach(users, id: \.self) { user in
                     Text(user)
                 }
+                .onDelete(perform: delete)
             }
             .toolbar(content: {
                 if showTextField {
