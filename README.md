@@ -10,4 +10,4 @@ I want to be able to add and rename rows as well.
 
 As of this writing, I'm able to add a row... even added a nice spring animation.
 
-https://github.com/theevo/SwiftUI-List-Edit/raw/main/readme/SwiftUI-list-edit-demo.mp4
+![](https://github.com/theevo/SwiftUI-List-Edit/raw/main/readme/SwiftUI-list-edit-demo.mp4.mov)
