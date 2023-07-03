@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    enum FocusedField {
+        case newName
+    }
+    
     @State private var editMode: EditMode = .inactive
     @State private var users: [String] = []
     @State private var newName = ""
+    @State private var showTextField = false
+    @FocusState private var focusedField: FocusedField?
     
     init(names: [String]) {
         _users = State(initialValue: names)
@@ -19,40 +25,83 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                if editMode.isEditing == true {
-                    ForEach(Array(users.enumerated()), id: \.element) { index, user in
-                        LineEditView(name: user)
-                            .onSubmit {
-                                print("submitted")
-                            }
-                    }
-                    .onDelete(perform: delete)
-                } else {
-                    ForEach(users, id: \.self) { user in
-                        Text(user)
-                    }
-                    .onDelete(perform: delete)
+                if showTextField {
+                    newNameTextField
                 }
+                ForEach(users, id: \.self) { user in
+                    Text(user)
+                }
+                .onDelete(perform: delete)
+                .onMove(perform: move)
             }
-            .onChange(of: editMode) { newValue in
-                print("editMode = \(editMode)")
-            }
-            .animation(.easeIn, value: editMode)
-            .toolbar {
+            .toolbar(content: {
                 EditButton()
-            }
-            .navigationTitle("Hello")
+                if editMode.isEditing == true {
+                    if showTextField {
+                        cancelButton
+                    } else {
+                        addButton
+                    }
+                }
+            })
             .environment(\.editMode, $editMode)
+            .navigationTitle("Hello")
         }
+    }
+    
+    var addButton: some View {
+        Button {
+            withAnimation(.spring()) {
+                showTextField = true
+                focusedField = .newName
+            }
+        } label: {
+            Image(systemName: "plus")
+        }
+    }
+    
+    var cancelButton: some View {
+        Button("Cancel") {
+            withAnimation(.spring()) {
+                reset()
+            }
+        }
+    }
+    
+    var newNameTextField: some View {
+        TextField("Name", text: $newName)
+            .focused($focusedField, equals: .newName)
+            .onSubmit {
+                if newName.isNotEmpty {
+                    users.insert(newName, at: 0)
+                }
+                reset()
+            }
+            .submitLabel(.done)
     }
     
     func delete(at offsets: IndexSet) {
         users.remove(atOffsets: offsets)
+    }
+    
+    func move(from offsets: IndexSet, to destination: Int) {
+        users.move(fromOffsets: offsets, toOffset: destination)
+    }
+    
+    private func reset() {
+        showTextField = false
+        newName = ""
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(names: ["Paul", "Taylor", "Adele"])
+    }
+}
+
+extension Collection {
+    var isNotEmpty: Bool {
+        !self.isEmpty
     }
 }
