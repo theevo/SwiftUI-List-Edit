@@ -71,6 +71,7 @@ struct ContentView: View {
                 }
                 reset()
             }
+            .submitLabel(.done)
     }
     
     func delete(at offsets: IndexSet) {
