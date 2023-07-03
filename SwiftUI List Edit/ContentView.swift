@@ -25,14 +25,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 if showTextField {
-                    TextField("Name", text: $newName)
-                        .focused($focusedField, equals: .newName)
-                        .onSubmit {
-                            if newName.isNotEmpty {
-                                users.insert(newName, at: 0)
-                            }
-                            reset()
-                        }
+                    newNameTextField
                 }
                 ForEach(users, id: \.self) { user in
                     Text(user)
@@ -41,25 +34,43 @@ struct ContentView: View {
             }
             .toolbar(content: {
                 if showTextField {
-                    Button("Cancel") {
-                        withAnimation(.spring()) {
-                            reset()
-                        }
-                    }
+                    cancelButton
                 } else {
-                    Button {
-                        withAnimation(.spring()) {
-                            showTextField = true
-                            focusedField = .newName
-                        }
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-
+                    addButton
                 }
             })
             .navigationTitle("Hello")
         }
+    }
+    
+    var addButton: some View {
+        Button {
+            withAnimation(.spring()) {
+                showTextField = true
+                focusedField = .newName
+            }
+        } label: {
+            Image(systemName: "plus")
+        }
+    }
+    
+    var cancelButton: some View {
+        Button("Cancel") {
+            withAnimation(.spring()) {
+                reset()
+            }
+        }
+    }
+    
+    var newNameTextField: some View {
+        TextField("Name", text: $newName)
+            .focused($focusedField, equals: .newName)
+            .onSubmit {
+                if newName.isNotEmpty {
+                    users.insert(newName, at: 0)
+                }
+                reset()
+            }
     }
     
     func delete(at offsets: IndexSet) {
